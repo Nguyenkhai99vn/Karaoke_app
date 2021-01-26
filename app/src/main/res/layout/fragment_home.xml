@@ -167,6 +167,7 @@
             app:floatingSearch_viewTextColor="@color/black"
             app:floatingSearch_menuItemIconColor="@color/Gra_end"
             app:floatingSearch_viewSuggestionItemTextColor="@color/black"
+            app:floatingSearch_showVoiceInput="true"
             app:floatingSearch_showMoveSuggestionUp="true"
             >
 

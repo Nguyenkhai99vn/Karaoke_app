@@ -1,10 +1,7 @@
 package com.example.karaoke_app.Fragment
 
-import android.app.DownloadManager
 import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
-import android.content.pm.ResolveInfo
 import android.os.AsyncTask
 import android.os.Bundle
 import android.speech.RecognizerIntent
@@ -17,7 +14,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.arlib.floatingsearchview.FloatingSearchView
@@ -26,6 +22,7 @@ import com.arlib.floatingsearchview.suggestions.model.SearchSuggestion
 import com.example.karaoke_app.Adaptertheloai.Adptertbaihat
 import com.example.karaoke_app.Adaptertheloai.Adptertheloai
 import com.example.karaoke_app.Adaptertheloai.theloai
+import com.example.karaoke_app.Interface.OnCategoryClickListner
 import com.example.karaoke_app.R
 import com.example.karaoke_app.entity.User
 import com.example.karaoke_app.model.Suggestion
@@ -54,7 +51,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [HomeFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class HomeFragment : Fragment(){
+class HomeFragment : Fragment(), OnCategoryClickListner{
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -182,7 +179,7 @@ class HomeFragment : Fragment(){
 
 
         recyclerview.layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.HORIZONTAL , false)
-        recyclerview.adapter = Adptertheloai(listtheloai)
+        recyclerview.adapter = Adptertheloai(listtheloai, this)
         val urlGetDatamusic : String = "https://byyswag.000webhostapp.com/?keyword=top karaoke nhạc trẻ 2020"
         Getdata().execute(urlGetDatamusic)
         initAdapter()
@@ -323,6 +320,17 @@ class HomeFragment : Fragment(){
         }
         super.onActivityResult(requestCode, resultCode, data)
     }
+    override fun OnCategoryClick(item: theloai, position: Int) {
+        var urlyoutube: String = "https://byyswag.000webhostapp.com/?keyword="
+        urlyoutube = urlyoutube.plus(item.text)
+        clearListVideo()
+        Getdata().execute(urlyoutube)
+        initAdapter()
+        initRecyclerView()
+        EDTSeach.clearSuggestions()
+        EDTSeach.clearQuery()
+        EDTSeach.clearSearchFocus()
+    }
 
 //    public fun checkVoiceRecognition() {
 //        val pm: PackageManager =
@@ -362,6 +370,8 @@ class HomeFragment : Fragment(){
                 }
             }
     }
+
+
 
 
 }
