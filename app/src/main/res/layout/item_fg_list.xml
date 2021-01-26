@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="210dp"
+    android:layout_height="210dp"
+    android:orientation="vertical">
+
+    <ImageButton
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/dancer100"
+        android:scaleType="centerCrop"
+        android:background="@null"
+        android:id="@+id/imageView100"
+        tools:ignore="MissingConstraints">
+
+    </ImageButton>
+
+</LinearLayout>
